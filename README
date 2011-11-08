@@ -1,5 +1,28 @@
- Php nano engine, simple utility for managing users and mysql queries
- Php nano engine, jednoduchý nástroj na správu používateľov a prácu s mysql požiadavkami
+Php nano engine, simple utility for managing users and mysql queries
+Php nano engine, jednoduchý nástroj na správu používateľov a prácu s mysql požiadavkami
+Version/Verzia 0.2
 
 Written by/Napísal Martin Habovštiak <martin dot habovstiak at gmail dot com>
+
+Q/A
+
+Q: Why you do another new php engine?
+A: I was writting it for learning one newbie and then realised, I've written quite good
+   engine, so I've decided to publish it.
+
+Q: How to use it?
+A: Look at samples.
+
+Q: Why you haven't included <some feature>?
+A: Probably because it's intended to be simple.
+
+Q: Why you dont use OOP?
+A: Because it's for learning basics with php.
+
+Q: Your code sucks!
+A: You are free to send patches.
+
+Q: Your code sucks at all!
+A: I'm not pushing you into reading/using it,
+   so if you don't like it go away and never return back!
 
