@@ -22,16 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-// Database errors
-	define("EDBCONN", 1); // connecting to DB
-	define("EDBSEL", 2);  // selecting database
-	define("EQUERY", 3);  // performing query
-
-// User input errors
-	define("EBADUNAME", 11);
-	define("EBADEMAIL", 12);
-	define("EDIFFPASS", 13);
-	define("EWEAKPASS", 14);
+include "errorconfig.php";
 
 // Error functions
 	$errno = 0;
@@ -49,6 +40,7 @@ THE SOFTWARE.
 					EDBCONN => "Unable connect to database",
 					EDBSEL => "Unable select database",
 					EQUERY => "Unable perform database query",
+
 					EBADUNAME => "Bad user name",
 					EBADEMAIL => "Bad e-mail address",
 					EDIFFPASS => "Passwords are different",
@@ -58,6 +50,7 @@ THE SOFTWARE.
 					EDBCONN => "Nepodarilo sa pripojiť k databáze",
 					EDBSEL => "Nepodarilo sa vybrať databázu",
 					EQUERY => "Databáze sa nepodarilo vykonať požiadavku",
+
 					EBADUNAME => "Chybné prihlasovacie meno",
 					EBADEMAIL => "Chybná e-mailová adresa",
 					EDIFFPASS => "Heslá nie sú rovnaké",
@@ -65,5 +58,20 @@ THE SOFTWARE.
 			)
 		);
 		return $errors[$lang][$err];
+	}
+
+	function checkdebug() {
+		if(!DEBUG) return false;
+		global $allowedDebugIP;
+		return array_search($_SERVER["REMOTE_ADDR"], $allowedDebugIP) !== false;
+	}
+
+	function debugmsg($msg) {	
+		if(!checkdebug()) return;
+		echo "\n<!-- DEBUG: ".$msg." -->\n";
+	}
+
+	function debug($err = NULL, $lang = "sk") {
+		debugmsg(errorstr($err, $lang));
 	}
 ?>
