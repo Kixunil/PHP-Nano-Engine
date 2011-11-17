@@ -41,39 +41,6 @@ THE SOFTWARE.
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <title>Prihlásenie</title>
-
-<script type="text/javascript">
-<!--
-	var minPassStrength = <?php echo MINPASSSTRENGTH; ?>;
-
-	funcion passStrength(password) {
-		var lowercase = false;             // obsahuje malé písmená?
-		var uppercaseb = false;            // obsahuje veľké písmeno na začiatku?
-		var uppercasem = false;            // obsahuje veľké písmená a mimo začiatku?
-		var numbers = false;               // obsahuje čísla?
-		var whitespace = false;            // obsahuje medzeru?
-		var specials = false;              // obsahuje špeciálne znaky?
-
-		for(i = 0; i < password.length; ++i) {
-			if(password[i] >= "a" && password[$i] <= "z") lowercase = true; else						// malé písmená	
-			if(password[i] >= "A" && password[i] <= "Z") if(i == 0) uppercaseb = true; else uppercasem = true; else  	// veľké písmená
-			if(password[i] >= "0" && password[i] <= "9") numbers = true; else                                          	// čísla
-			if(password[i] == " ") whitespace = true; else specials = true;                                             	// medzera; všetko ostatné sú špeciálne
-
-			var chars = 0;
-			if(lowercase) chars += 26;
-			if(uppercasem) chars += 26;
-			if(numbers) chars += 10;
-			if(whitespace) ++chars;
-			if(specials) chars += 34;
-
-			num = Math.pow(chars, strlen(password));
-			if(!uppercasem && uppercaseb) $num *= 2;
-			return num;
-		}
-//-->
-</script>
-
 </head>
 
 <body>
