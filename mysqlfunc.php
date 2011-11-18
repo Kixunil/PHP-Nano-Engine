@@ -63,14 +63,17 @@ THE SOFTWARE.
 		} else return false;
 	}
 
-	function getRows($table, $value, $key = "id", $limit = NULL) {
+	function getRows($table, $value = NULL, $key = "id", $limit = NULL) {
 		if($conn = connectDb()) {
-			$query = "SELECT * FROM ".$table." WHERE ";
-			if(is_array($value)) 
-			{
-				foreach($value as $k => $v) $query .= $k." = '".mysql_real_escape_string($v, $conn)."' AND ";
-				$query = rtrim($query, "' AND ");
-			} else $query .= $key."=".(is_int($value)?$value:"'".mysql_real_escape_string($value, $conn)."'");
+			$query = "SELECT * FROM ".$table;
+			if($value != NULL) {
+				$query .= " WHERE ";
+				if(is_array($value)) 
+				{
+					foreach($value as $k => $v) $query .= $k." = '".mysql_real_escape_string($v, $conn)."' AND ";
+					$query = rtrim($query, "' AND ");
+				} else $query .= $key."=".(is_int($value)?$value:"'".mysql_real_escape_string($value, $conn)."'");
+			}
 			if($limit !== NULL) $query .= " LIMIT ".$limit;
 			return mysql_query($query, $conn);
 		}
