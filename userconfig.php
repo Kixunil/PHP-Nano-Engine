@@ -25,4 +25,6 @@ THE SOFTWARE.
 	define("MINPASSSTRENGTH", 144555105949057024); // lámanie hesla so silou 31536000000000000 bude trvať približne jeden rok
 	define("VALIDFIRSTNAME", "/.*/");
 	define("VALIDLASTNAME", "/.*/");
+
+	define("CONSTSALT", "Put some random stuff here!");
 ?>

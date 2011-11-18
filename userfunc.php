@@ -75,7 +75,7 @@ THE SOFTWARE.
 
 	function genSaltedPass($pass, $salt) {			// vygenerovanie slaného hesla
 		$split = 10;					// bulharská konštanta na zmätenie útočníkov (lepšie by bolo použiť šifru ale toto je rýchlejšie)
-		$salted = substr($salt, 0, $split).$pass.substr($salt, $split, 40-$split);	// pridanie soli k heslu
+		$salted = substr($salt, 0, $split).$pass.substr($salt, $split, 40-$split).CONSTSALT;	// pridanie soli k heslu
 		return sha1($salted);				// zahashovanie
 	}
 
