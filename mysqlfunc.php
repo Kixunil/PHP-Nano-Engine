@@ -52,13 +52,14 @@ THE SOFTWARE.
 
 			foreach($data as $key => $value) {								// Prejdenie prvkami asociatívneho poľa
 				$names .= $key.", ";
-				$values .= (is_int($value))?$value:("'".mysql_real_escape_string($value, $conn)."'").", ";
+				$values .= (is_int($value))?$value.", ":("'".mysql_real_escape_string($value, $conn)."'").", ";
 			}
 
 			$names = rtrim($names, ", "); // zrušenie posledných dvoch znakov - t.j. ", "
 			$values = rtrim($values, ", ");
 			$query .= $names.$values.");";
 
+			debugmsg($query);
 			return mysql_query($query, $conn);
 		} else return false;
 	}
@@ -75,6 +76,7 @@ THE SOFTWARE.
 				} else $query .= $key."=".(is_int($value)?$value:"'".mysql_real_escape_string($value, $conn)."'");
 			}
 			if($limit !== NULL) $query .= " LIMIT ".$limit;
+			debugmsg($query);
 			return mysql_query($query, $conn);
 		}
 	}
