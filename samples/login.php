@@ -41,6 +41,11 @@ THE SOFTWARE.
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <title>Prihlásenie</title>
+<!--
+<?php
+	if(($cnt = getRowCount(USERTABLE)) !== FALSE) echo "Number of users: ".$cnt; // this is only example
+?>
+-->
 </head>
 
 <body>

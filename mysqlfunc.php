@@ -78,12 +78,28 @@ THE SOFTWARE.
 			if($limit !== NULL) $query .= " LIMIT ".$limit;
 			debugmsg($query);
 			return mysql_query($query, $conn);
-		}
+		} else return FALSE;
 	}
 
 	function getRow($table, $value, $key = "id") {
 		$result = getRows($table, $value, $key, "0, 1");
 		if($result) return mysql_fetch_assoc($result); else return false;
+	}
+
+	function getRowCount($table, $value = NULL, $key = "id") {
+		if($conn = connectDb()) {
+			$query = "SELECT COUNT(*) FROM ".$table;
+			if($value != NULL) {
+				$query .= " WHERE ";
+				if(is_array($value)) {
+					foreach($value as $k => $v) $query .= $k." = '".mysql_real_escape_string($v, $conn)."' AND ";
+					$query = rtrim($query, "' AND ");
+				} else $query .= $key."=".(is_int($value)?$value:"'".mysql_real_escape_string($value, $conn)."'");
+			}
+			if($result = mysql_query($query, $conn)) {
+				if($row = mysql_fetch_assoc($result)) return $row["COUNT(*)"]; else return FALSE;
+			} else return FALSE;
+		} else return FALSE;
 	}
 
 	function updateRow($table, $data, $value, $key = "id") {
