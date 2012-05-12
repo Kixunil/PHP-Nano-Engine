@@ -64,7 +64,7 @@ THE SOFTWARE.
 		} else return false;
 	}
 
-	function getRows($table, $value = NULL, $key = "id", $limit = NULL) {
+	function getRows($table, $value = NULL, $key = "id", $limit = NULL, $sortby = NULL, $sort = NULL) {
 		if($conn = connectDb()) {
 			$query = "SELECT * FROM ".$table;
 			if($value != NULL) {
@@ -75,7 +75,11 @@ THE SOFTWARE.
 					$query = rtrim($query, "' AND ");
 				} else $query .= $key."=".(is_int($value)?$value:"'".mysql_real_escape_string($value, $conn)."'");
 			}
-			if($limit !== NULL) $query .= " LIMIT ".$limit;
+
+				
+			if($limit != NULL) {$query .= " LIMIT ".$limit;}
+
+			if($sort !== NULL && $sortby !== NULL) $query .= " ORDER BY ".$sortby." ".$sort;
 			debugmsg($query);
 			return mysql_query($query, $conn);
 		} else return FALSE;
