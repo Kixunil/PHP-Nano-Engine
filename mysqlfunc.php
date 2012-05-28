@@ -85,8 +85,8 @@ THE SOFTWARE.
 		} else return FALSE;
 	}
 
-	function getRow($table, $value, $key = "id") {
-		$result = getRows($table, $value, $key, "0, 1");
+	function getRow($table, $value, $key = "id", $sortby = NULL, $sort = NULL) {
+		$result = getRows($table, $value, $key, "0, 1", $sortby, $sort);
 		if($result) return mysql_fetch_assoc($result); else return false;
 	}
 
