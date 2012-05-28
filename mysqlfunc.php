@@ -76,10 +76,9 @@ THE SOFTWARE.
 				} else $query .= $key."=".(is_int($value)?$value:"'".mysql_real_escape_string($value, $conn)."'");
 			}
 
-				
+			if($sort !== NULL && $sortby !== NULL) $query .= " ORDER BY ".$sortby." ".$sort;
 			if($limit != NULL) {$query .= " LIMIT ".$limit;}
 
-			if($sort !== NULL && $sortby !== NULL) $query .= " ORDER BY ".$sortby." ".$sort;
 			debugmsg($query);
 			return mysql_query($query, $conn);
 		} else return FALSE;
